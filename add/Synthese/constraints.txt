@@ -1,0 +1,2 @@
+set_load  0.0461309
+set_driving_cell sg13g2_inv_2
