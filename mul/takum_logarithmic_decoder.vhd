@@ -1,6 +1,10 @@
 library ieee;
+library work;
+
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+
+use work.utility_pkg.all;
 
 entity takum_logarithmic_decoder is
     generic(
@@ -37,14 +41,11 @@ begin
 
     s_mantissa <= i_takum(G_N-5-1 downto 0);
 
-    gen_regime : for i in 0 to 2 generate
-        s_regime(i) <= not(s_dir) xor s_regime_raw(i);
-    end generate;
+    s_regime <= cond_invert(s_regime_raw, not(s_dir));
+
     s_antiregime <= not (s_regime);
 
-    gen_inv_char_raw : for i in 0 to 6 generate
-        s_char_invert(i) <= s_dir xor s_char_raw(i);
-    end generate;
+    s_char_invert <= cond_invert(s_char_raw, s_dir);
 
     s_char_tmp <= "10" & s_char_invert;
 
@@ -62,14 +63,7 @@ begin
 
     s_char_post_inc <= s_char_post_shift(s_char_post_shift'high) & std_logic_vector(unsigned(s_char_post_shift(7 downto 0)) + 1);
     
-
-    invert : process(s_char_post_inc, s_dir) 
-    begin 
-        s_char(8) <= s_char_post_inc(8);
-        for i in 0 to 7 loop 
-            s_char(i) <= s_dir xor s_char_post_inc(i);
-        end loop;
-    end process;
+    s_char <= s_char_post_inc(8) & cond_invert(s_char_post_inc(7 downto 0), s_dir);
 
     mant_shifter : entity work.takum_shift_left
         generic map(
