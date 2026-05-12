@@ -28,7 +28,12 @@ architecture Behavioral of takum_mul is
     signal s_c_2 : std_logic_vector(8 downto 0);
     signal s_mant_1 : std_logic_vector(G_N - 5 - 1 downto 0);
     signal s_mant_2 : std_logic_vector(G_N - 5 - 1 downto 0);
+
+    signal s_l_added : std_logic_vector(G_N+3 downto 0);
+
+    signal s_result : std_logic_vector(G_N-1 downto 0);
 begin
+    -- TODO zero weglassen
     -- check for Nar or zero, for maybe power opt
     special_check : process is
         variable v_all_zero1 : std_logic;
@@ -74,7 +79,18 @@ begin
             o_mant  => s_mant_2
         );
     
+    s_l_added <= std_logic_vector(unsigned(s_c_1 & s_mant_1) + unsigned(s_c_2 & s_mant_2));
     
+    encoder : entity work.takum_logarithmic_encoder
+        generic map(
+            G_N => G_N
+        )
+        port map(
+            i_sign  => s_result_sign,
+            i_l     => s_l_added,
+            o_takum => s_result
+        );
     
+    o_result <= s_is_nar & ((G_N-2 downto 0) => '0') when s_is_nar or s_is_zero else s_result;
     
 end architecture Behavioral;
