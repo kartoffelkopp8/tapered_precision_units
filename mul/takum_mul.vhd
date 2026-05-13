@@ -35,7 +35,7 @@ architecture Behavioral of takum_mul is
 begin
     -- TODO zero weglassen
     -- check for Nar or zero, for maybe power opt
-    special_check : process is
+    special_check : process(i_op_a, i_op_b) is
         variable v_all_zero1 : std_logic;
         variable v_all_zero2 : std_logic;
         variable v_is_nar1 : std_logic;
@@ -91,6 +91,6 @@ begin
             o_takum => s_result
         );
     
-    o_result <= s_is_nar & ((G_N-2 downto 0) => '0') when s_is_nar or s_is_zero else s_result;
+    o_result <= s_is_nar & (G_N-2 downto 0 => '0') when s_is_nar or s_is_zero else s_result;
     
 end architecture Behavioral;

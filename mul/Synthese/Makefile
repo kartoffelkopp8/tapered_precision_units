@@ -1,0 +1,30 @@
+STOLENSOURCE := \
+ ../stolen/predecoder.vhd \
+ ../stolen/decoder_logarithmic.vhd
+
+SOURCE := \
+ ../utility_pkg.vhd \
+ ../takum_shift_right.vhd \
+ ../takum_shift_left.vhd \
+ ../takum_logarithmic_decoder.vhd \
+ ../LOD.vhd \
+ ../takum_logarithmic_encoder.vhd \
+ ../takum_mul.vhd 
+
+GHDL     = ghdl
+GHDLFLAGS = --std=08 
+
+analyze_stolen: 
+	$(GHDL) -a $(GHDLFLAGS) $(STOLENSOURCE)
+
+synth_stolen: analyze_stolen
+	yosys synth.tcl
+
+synth: analyze 
+	yosys synth.tcl
+
+analyze: 
+	$(GHDL) -a $(GHDLFLAGS) $(SOURCE)
+
+sta: 
+	sta ../STA/sta.tcl
