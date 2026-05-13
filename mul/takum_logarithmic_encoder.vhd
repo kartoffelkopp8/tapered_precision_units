@@ -29,17 +29,18 @@ architecture RTL of takum_logarithmic_encoder is
     signal s_regime_tmp : std_logic_vector(2 downto 0);
     signal s_regime     : std_logic_vector(2 downto 0);
 
-    signal s_precursor_cond_inv : std_logic_vector(7 downto 0); 
+    signal s_precursor_cond_inv : std_logic_vector(6 downto 0); 
 
     signal s_characteristic : std_logic_vector(6 downto 0);
 
     signal s_vld : std_logic;
 
-    signal s_c_mant_pre_shift : std_logic_vector(s_mant_raw'length + 8-1 downto 0); -- append characteristics to mantissa for shift
-    signal s_c_mant_shftd : std_logic_vector(s_mant_raw'length + 8-1 downto 0);
-    signal s_c_m : std_logic_vector(s_mant_raw'length downto 0);
+    -- signal s_c_mant_pre_shift : std_logic_vector(s_mant_raw'length + 8-1 downto 0); -- append characteristics to mantissa for shift
+    signal s_c_mant_pre_shift : std_logic_vector(G_N+9-1 downto 0); -- append characteristics to mantissa for shift
+    signal s_c_mant_shftd : std_logic_vector(G_N+9-1 downto 0);
+    signal s_c_m : std_logic_vector(G_N+2-1 downto 0);
 
-    signal s_pre_round : std_logic_vector(G_N downto 0);
+    signal s_pre_round : std_logic_vector(G_N+7-1 downto 0);
 begin
 
     s_c_raw    <= i_l(G_N + 3 - 1 downto G_N + 3 - 9);
@@ -65,8 +66,8 @@ begin
 
     s_regime <= s_regime_tmp when s_vld = '1' else "111";
 
-    s_precursor_cond_inv <= cond_invert(s_precursor, not(s_dir));
-    s_c_mant_pre_shift <= s_precursor_cond_inv & s_mant_raw;
+    s_precursor_cond_inv <= cond_invert(s_precursor(6 downto 0), not(s_dir));
+    s_c_mant_pre_shift <= s_precursor_cond_inv & s_mant_raw & "0000000";
 
     right_shift : entity work.takum_shift_right
         generic map(
@@ -81,6 +82,8 @@ begin
         );
     s_c_m <= s_c_mant_shftd(s_c_mant_shftd'high-7 downto 0); -- take lower bits
 
-    s_pre_round <= i_sign & s_dir & s_regime & s_c_m;
+    s_pre_round <= i_sign & s_dir & s_regime & s_c_m; -- between E3 and E4 in paper
+
+    
 
 end architecture RTL;
