@@ -14,6 +14,9 @@ SOURCE := \
 GHDL     = ghdl
 GHDLFLAGS = --std=08 
 
+TBFILE := ../sim/tb_takum_mul.vhd
+TB := tb_takum_mul
+
 analyze_stolen: 
 	$(GHDL) -a $(GHDLFLAGS) $(STOLENSOURCE)
 
@@ -28,3 +31,8 @@ analyze:
 
 sta: 
 	sta ../STA/sta.tcl
+
+test: analyze
+	$(GHDL) -a $(GHDLFLAGS) $(TBFILE)
+	$(GHDL) -e $(GHDLFLAGS) $(TB)
+	$(GHDL) -r $(GHDLFLAGS) $(TB) --vcd=test.vcd
