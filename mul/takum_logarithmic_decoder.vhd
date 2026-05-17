@@ -37,13 +37,29 @@ begin
     -- extract values from takum
     s_dir        <= i_takum(G_N - 2);
     s_regime_raw <= i_takum(G_N - 3 downto G_N - 5);
-    s_char_raw   <= i_takum(G_N - 5 - 1 downto G_N - 12);
+    -- s_char_raw   <= i_takum(G_N - 5 - 1 downto G_N - 12);
+
+    -- standard slice fits
+    GEN_CHAR_NORMAL : if G_N >= 12 generate
+        s_char_raw <= i_takum(G_N - 5-1 downto G_N - 12);
+
+    else generate
+        process(i_takum)
+            variable v_tmp : std_logic_vector(6 downto 0);
+            constant C_NUM : integer := G_N - 5;
+        begin
+            v_tmp := (others => '0'); 
+            v_tmp(6 downto 7 - C_NUM) := i_takum(G_N - 5-1 downto maximum(G_N-12, 0));
+            
+            s_char_raw <= v_tmp;
+        end process;
+    end generate;
 
     s_mantissa <= i_takum(G_N-5-1 downto 0);
 
     s_regime <= cond_invert(s_regime_raw, not(s_dir));
 
-    s_antiregime <= not (s_regime);
+    s_antiregime <= not(s_regime);
 
     s_char_invert <= cond_invert(s_char_raw, s_dir);
 
@@ -63,7 +79,8 @@ begin
 
     s_char_post_inc <= s_char_post_shift(s_char_post_shift'high) & std_logic_vector(unsigned(s_char_post_shift(7 downto 0)) + 1);
     
-    s_char <= s_char_post_inc(8) & cond_invert(s_char_post_inc(7 downto 0), s_dir);
+    -- s_char <= s_char_post_inc(8) & cond_invert(s_char_post_inc(7 downto 0), s_dir);
+    s_char <= cond_invert(s_char_post_inc, s_dir);
 
     mant_shifter : entity work.takum_shift_left
         generic map(

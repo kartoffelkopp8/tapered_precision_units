@@ -29,6 +29,8 @@ architecture Behavioral of takum_mul is
     signal s_mant_1 : std_logic_vector(G_N - 5 - 1 downto 0);
     signal s_mant_2 : std_logic_vector(G_N - 5 - 1 downto 0);
 
+    signal s_l_1 : std_logic_vector(G_N+3 downto 0);
+    signal s_l_2 : std_logic_vector(G_N+3 downto 0);
     signal s_l_added : std_logic_vector(G_N+3 downto 0);
 
     signal s_result : std_logic_vector(G_N-1 downto 0);
@@ -53,7 +55,7 @@ begin
         v_is_zero2 := not(i_op_b(G_N-1)) and (not v_all_zero2);
 
         s_is_nar <= v_is_nar1 or v_is_nar2;
-        s_is_zero <= v_is_zero1 and v_is_zero2;
+        s_is_zero <= v_is_zero1 or v_is_zero2;
     end process special_check;
     
     s_result_sign <= i_op_a(i_op_a'high) xor i_op_b(i_op_b'high);
@@ -79,7 +81,10 @@ begin
             o_mant  => s_mant_2
         );
     
-    s_l_added <= std_logic_vector(unsigned(s_c_1 & s_mant_1) + unsigned(s_c_2 & s_mant_2));
+    s_l_1 <= s_c_1 & s_mant_1;
+    s_l_2 <= s_c_2 & s_mant_2;
+
+    s_l_added <= std_logic_vector(signed(s_l_1) + signed(s_l_2));
     
     encoder : entity work.takum_logarithmic_encoder
         generic map(
