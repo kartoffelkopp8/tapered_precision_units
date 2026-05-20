@@ -33,6 +33,7 @@ architecture Behavioral of takum_logarithmic_decoder is
     -- mantissa 
     signal s_mantissa : std_logic_vector(G_N-5-1 downto 0);
     signal s_mantissa_extracted : std_logic_vector(s_mantissa'range);
+    
 begin
     -- extract values from takum
     s_dir        <= i_takum(G_N - 2);
