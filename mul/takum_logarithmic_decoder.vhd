@@ -19,6 +19,7 @@ end entity takum_logarithmic_decoder;
 
 architecture Behavioral of takum_logarithmic_decoder is
     signal s_dir         : std_logic;
+    signal s_sign : std_logic;
     signal s_regime      : std_logic_vector(2 downto 0);
     signal s_regime_raw  : std_logic_vector(2 downto 0);
     signal s_antiregime  : std_logic_vector(2 downto 0);
@@ -36,6 +37,7 @@ architecture Behavioral of takum_logarithmic_decoder is
     
 begin
     -- extract values from takum
+    s_sign  <= i_takum(G_N-1);
     s_dir        <= i_takum(G_N - 2);
     s_regime_raw <= i_takum(G_N - 3 downto G_N - 5);
     -- s_char_raw   <= i_takum(G_N - 5 - 1 downto G_N - 12);
