@@ -91,6 +91,8 @@ begin
 
     s_pre_round <= i_sign & s_dir & s_regime_cond_inv & s_c_m; 
 
+    -- up to here: equal 
+
     s_takum_nr   <= s_pre_round(G_N + 7 - 1 downto 7);
     s_lsb_bit    <= s_takum_nr(s_takum_nr'low);
     s_guard_bit  <= s_pre_round(6);
@@ -104,14 +106,14 @@ begin
         variable v_max_takum : std_logic_vector(G_N-1 downto 0);
         variable v_min_takum : std_logic_vector(G_N-1 downto 0);
     begin
-        v_max_takum := i_sign & (G_N-2 downto 0 => '1');          
-        v_min_takum := i_sign & (G_N-2 downto 1 => '0') & '1';   
-
-        if i_underflow = '1' then
-            o_takum <= v_min_takum; 
+        v_max_takum := i_sign & (G_N-2 downto 0 => '1'); 
+        v_min_takum := i_sign & (G_N-2 downto 1 => '0') & '1'; 
+        
+        if i_underflow = '1' or (or_reduce(s_takum_rounded(G_N-2 downto 0)) = '0') then
+            o_takum <= v_min_takum;
         elsif i_overflow = '1' then
             o_takum <= v_max_takum; 
-        else
+        else 
             o_takum <= s_takum_rounded;
         end if;
     end process saturation;

@@ -20,11 +20,11 @@ int main() {
     for (int i = 0; i < 256; i++) {
         for (int j = 0; j < 256; j++) {
             // Umwandlung in den takum8 Typ (int8_t)
-            takum8 op_a = (takum8)i;
-            takum8 op_b = (takum8)j;
+            takum_log8 op_a = (takum_log8)i;
+            takum_log8 op_b = (takum_log8)j;
 
             // Berechnung mit der Library
-            takum8 result = takum8_multiplication(op_a, op_b);
+            takum_log8 result = takum_log8_multiplication(op_a, op_b);
 
             // Ausgabe als Hex-Bitmuster: 
             // Wir casten auf uint8_t, damit Werte wie 0xFF nicht als ffffffff gedruckt werden.
@@ -32,7 +32,15 @@ int main() {
         }
     }
 
-    fclose(f);
+    takum_log8 opa = 0xB2;
+    takum_log8 opb = 0xBE;
+
+    // Nutzen Sie takum_log8_multiplication passend zum Datentyp
+    takum_log8 res = takum_log8_multiplication(opa, opb);
+
+    // Ausgabe des Ergebnis-Bitmusters als Hexadezimalwert
+    printf("%02x\n", (uint8_t)res);
+
     printf("Done\n");
     return 0;
 }
