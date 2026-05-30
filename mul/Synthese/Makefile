@@ -8,6 +8,7 @@ SOURCE := \
  ../takum_shift_left.vhd \
  ../takum_logarithmic_decoder.vhd \
  ../LOD.vhd \
+ ../takum_encode.vhd \
  ../takum_logarithmic_encoder.vhd \
  ../takum_mul.vhd 
 
@@ -35,4 +36,4 @@ sta:
 test: analyze
 	$(GHDL) -a $(GHDLFLAGS) $(TBFILE)
 	$(GHDL) -e $(GHDLFLAGS) $(TB)
-	$(GHDL) -r $(GHDLFLAGS) $(TB) --vcd=test.vcd
+	$(GHDL) -r $(GHDLFLAGS) $(TB) --vcd=test.vcd 2>&1 | tee simulation_log.txt
