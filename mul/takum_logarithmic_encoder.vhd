@@ -13,8 +13,8 @@ entity takum_logarithmic_encoder is
     port(
         i_sign      : in  std_logic;
         i_l         : in  std_logic_vector(G_N + 3 downto 0);
-        i_overflow  : in  std_logic; 
-        i_underflow : in  std_logic; 
+        i_overflow  : in  std_logic;
+        i_underflow : in  std_logic;
         o_takum     : out std_logic_vector(G_N - 1 downto 0)
     );
 end entity takum_logarithmic_encoder;
@@ -51,7 +51,7 @@ architecture RTL of takum_logarithmic_encoder is
     signal s_round_down_underflow : std_logic; --marks if round down would underflow the takum
     signal s_round_up             : std_logic;
 
-    signal s_takum_rounded : std_logic_vector(G_N-1 downto 0);
+    signal s_takum_rounded : std_logic_vector(G_N - 1 downto 0);
 begin
 
     s_c_raw    <= i_l(G_N + 3 downto G_N - 5);
@@ -77,7 +77,7 @@ begin
 
     -- s_regime          <= s_regime_tmp when s_vld = '1' else "111"; -- not sure, sollt eghoist bits als 0 annehmen
     s_regime          <= not (s_regime_tmp);
-    s_regime_cond_inv <= cond_invert(s_regime, not(s_dir));
+    s_regime_cond_inv <= cond_invert(s_regime, not (s_dir));
 
     s_precursor_cond_inv <= cond_invert(s_precursor(6 downto 0), not (s_dir));
     s_c_mant_pre_shift   <= s_precursor_cond_inv & s_mant_raw & (6 downto 0 => '0');
@@ -139,24 +139,23 @@ begin
     s_sticky_bit <= or_reduce(s_pre_round(5 downto 0));
 
     -- s_round_up <= (s_guard_bit and (s_lsb_bit or s_sticky_bit));
-    s_round_up <= (s_round_down_underflow) or (not(s_round_up_overflow) and s_guard_bit and (s_lsb_bit or s_sticky_bit));
-
+    s_round_up <= (s_round_down_underflow) or (not (s_round_up_overflow) and s_guard_bit and (s_lsb_bit or s_sticky_bit));
 
     s_takum_rounded <= std_logic_vector(unsigned(s_takum_nr) + unsigned(std_logic_vector'(0 => s_round_up)));
-saturation : process(s_takum_rounded, i_overflow, i_underflow, i_sign) is
-        variable v_max_takum : std_logic_vector(G_N-1 downto 0);
-        variable v_min_takum : std_logic_vector(G_N-1 downto 0);
+    
+    saturation : process(s_takum_rounded, i_overflow, i_underflow, i_sign) is
+        variable v_max_takum : std_logic_vector(G_N - 1 downto 0);
+        variable v_min_takum : std_logic_vector(G_N - 1 downto 0);
     begin
-        v_max_takum := i_sign & (G_N-2 downto 0 => '1'); 
-        v_min_takum := i_sign & (G_N-2 downto 1 => '0') & '1'; 
-        
-        if i_underflow = '1' or (or_reduce(s_takum_rounded(G_N-2 downto 0)) = '0') then
+        v_max_takum := i_sign & (G_N - 2 downto 0 => '1');
+        v_min_takum := i_sign & (G_N - 2 downto 1 => '0') & '1';
+
+        if i_underflow = '1' or (or_reduce(s_takum_rounded(G_N - 2 downto 0)) = '0') then
             o_takum <= v_min_takum;
         elsif i_overflow = '1' then
-            o_takum <= v_max_takum; 
-        else 
+            o_takum <= v_max_takum;
+        else
             o_takum <= s_takum_rounded;
         end if;
     end process saturation;
-    -- o_takum <= s_takum_rounded;
 end architecture RTL;

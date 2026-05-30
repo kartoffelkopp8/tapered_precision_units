@@ -29,13 +29,13 @@ architecture Behavioral of takum_mul is
     signal s_mant_1 : std_logic_vector(G_N - 5 - 1 downto 0);
     signal s_mant_2 : std_logic_vector(G_N - 5 - 1 downto 0);
 
-    signal s_l_1          : std_logic_vector(G_N + 3 downto 0);
-    signal s_l_2          : std_logic_vector(G_N + 3 downto 0);
-    
-    signal s_l_added_ext  : std_logic_vector(G_N + 4 downto 0);
-    signal s_l_added      : std_logic_vector(G_N + 3 downto 0); 
-    signal s_overflow     : std_logic;
-    signal s_underflow    : std_logic;
+    signal s_l_1 : std_logic_vector(G_N + 3 downto 0);
+    signal s_l_2 : std_logic_vector(G_N + 3 downto 0);
+
+    signal s_l_added_ext : std_logic_vector(G_N + 4 downto 0);
+    signal s_l_added     : std_logic_vector(G_N + 3 downto 0);
+    signal s_overflow    : std_logic;
+    signal s_underflow   : std_logic;
 
     signal s_result : std_logic_vector(G_N - 1 downto 0);
 begin
@@ -91,12 +91,10 @@ begin
              std_logic_vector(-signed(s_c_2 & s_mant_2));
 
     s_l_added_ext <= std_logic_vector(resize(signed(s_l_1), G_N + 5) + resize(signed(s_l_2), G_N + 5));
+    s_l_added     <= s_l_added_ext(G_N + 3 downto 0);
 
     s_overflow  <= '1' when (s_l_added_ext(s_l_added_ext'high downto s_l_added_ext'high - 1) = "01") else '0';
-    
     s_underflow <= '1' when (s_l_added_ext(s_l_added_ext'high downto s_l_added_ext'high - 1) = "10") else '0';
-
-    s_l_added   <= s_l_added_ext(G_N + 3 downto 0);
 
     encoder : entity work.takum_logarithmic_encoder
         generic map(
@@ -104,14 +102,14 @@ begin
         )
         port map(
             i_sign      => s_result_sign,
-            i_l         => s_l_added,
             i_overflow  => s_overflow,
             i_underflow => s_underflow,
+            i_l         => s_l_added,
             o_takum     => s_result
         );
 
-    o_result <= s_is_nar & (G_N - 2 downto 0 => '0') when s_is_nar or s_is_zero else 
-                s_result when s_result_sign = '0' else 
+    o_result <= s_is_nar & (G_N - 2 downto 0 => '0') when s_is_nar or s_is_zero else
+                s_result when s_result_sign = '0' else
                 s_result_sign & std_logic_vector(unsigned(not (s_result(G_N - 2 downto 0))) + 1);
 
 end architecture Behavioral;
