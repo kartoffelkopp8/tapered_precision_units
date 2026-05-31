@@ -40,7 +40,7 @@ begin
     enable <= '1';
 
     stimulus : process is
-        constant C_TEST_SINGLE  : boolean := TRUE;
+        constant C_TEST_SINGLE  : boolean := FALSE;
         file     f_test_vectors : text open read_mode is C_FILE_NAME;
         variable l              : line;
 
@@ -53,7 +53,7 @@ begin
         op0 <= (others => '0');
         op1 <= (others => '0');
 
-        wait for C_CLK_PERIOD * 6;
+        wait for C_CLK_PERIOD * 2;
 
         report "    Test START  " severity note;
         if C_TEST_SINGLE = FALSE then
@@ -88,27 +88,54 @@ begin
             end if;
             report "#################################" & lf severity note;
         else                            -- @suppress "Dead code"
-            -- with expected: 01111111 and received: 00000001 operand A: 10011110, operand B: 10000001
-            op0 <= "10011110";
-            op1 <= "10000001";
-            -- with expected: 11111111 and received: 10000000 operand A: 11111111, operand B: 00100011
-            -- op0 <= "11111111";
-            -- op1 <= "00100011";
-            -- with expected: 00000001 and received: 00000000 operand A: 11111111, operand B: 11011100
-            -- op0 <= "11111111";
-            -- op1 <= "11011100";
-            --with expected: 00000001 and received: 01101001 operand A: 11111111, operand B: 11111111
-            -- op0 <= "11111111";
-            -- op1 <= "11111111";
-            -- with expected: 00011000 and received: 00011001 operand A: 11101000, operand B: 10111110
-            -- op0 <= "11101000";
-            -- op1 <= "10111110";
-            -- with expected: 10000011 0x83
+            -- Test 288 FAILED
+            -- with expected: 00000001 and received: 00001000
+            op0 <= "00000001";
+            op1 <= "00011111";
+            wait for 1 * C_CLK_PERIOD;
 
-            -- op0 <= "00011101";          -- 0x1D
-            -- op1 <= "10000010";          -- 0x82
-            -- op0 <= "10110010";
-            -- op1 <= "10111110";
+            -- Test 482 FAILED
+            -- with expected: 11111111 and received: 11111000
+            op0 <= "00000001";
+            op1 <= "11100001";
+            wait for 1 * C_CLK_PERIOD;
+
+            -- Test 7938 FAILED
+            -- with expected: 00000001 and received: 00001000
+            op0 <= "00011111";
+            op1 <= "00000001";
+            wait for 1 * C_CLK_PERIOD;
+
+            -- Test 8192 FAILED
+            -- with expected: 11111111 and received: 11111000
+            op0 <= "00011111";
+            op1 <= "11111111";
+            wait for 1 * C_CLK_PERIOD;
+
+            -- Test 57602 FAILED
+            -- with expected: 11111111 and received: 11111000
+            op0 <= "11100001";
+            op1 <= "00000001";
+            wait for 1 * C_CLK_PERIOD;
+
+            -- Test 57856 FAILED
+            -- with expected: 00000001 and received: 00001000
+            op0 <= "11100001";
+            op1 <= "11111111";
+            wait for 1 * C_CLK_PERIOD;
+
+            -- Test 65312 FAILED
+            -- with expected: 11111111 and received: 11111000
+            op0 <= "11111111";
+            op1 <= "00011111";
+            wait for 1 * C_CLK_PERIOD;
+
+            -- Test 65506 FAILED
+            -- with expected: 00000001 and received: 00001000
+            op0 <= "11111111";
+            op1 <= "11100001";
+            wait for 1 * C_CLK_PERIOD;
+
             wait for 1 * C_CLK_PERIOD;
             report to_string(res);
         end if;

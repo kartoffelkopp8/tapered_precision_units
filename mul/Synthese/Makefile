@@ -8,7 +8,6 @@ SOURCE := \
  ../takum_shift_left.vhd \
  ../takum_logarithmic_decoder.vhd \
  ../LOD.vhd \
- ../takum_encode.vhd \
  ../takum_logarithmic_encoder.vhd \
  ../takum_mul.vhd 
 

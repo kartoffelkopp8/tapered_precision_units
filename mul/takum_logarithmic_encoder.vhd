@@ -143,19 +143,19 @@ begin
 
     s_takum_rounded <= std_logic_vector(unsigned(s_takum_nr) + unsigned(std_logic_vector'(0 => s_round_up)));
     
-    saturation : process(s_takum_rounded, i_overflow, i_underflow, i_sign) is
-        variable v_max_takum : std_logic_vector(G_N - 1 downto 0);
-        variable v_min_takum : std_logic_vector(G_N - 1 downto 0);
-    begin
-        v_max_takum := i_sign & (G_N - 2 downto 0 => '1');
-        v_min_takum := i_sign & (G_N - 2 downto 1 => '0') & '1';
+    saturation : process(s_takum_rounded, i_overflow, i_underflow, i_sign, s_round_down_underflow) is
+    variable v_max_takum : std_logic_vector(G_N - 1 downto 0);
+    variable v_min_takum : std_logic_vector(G_N - 1 downto 0);
+begin
+    v_max_takum := i_sign & (G_N - 2 downto 0 => '1');
+    v_min_takum := i_sign & (G_N - 2 downto 1 => '0') & '1';
 
-        if i_underflow = '1' or (or_reduce(s_takum_rounded(G_N - 2 downto 0)) = '0') then
-            o_takum <= v_min_takum;
-        elsif i_overflow = '1' then
-            o_takum <= v_max_takum;
-        else
-            o_takum <= s_takum_rounded;
-        end if;
-    end process saturation;
+    if i_overflow = '1' then
+        o_takum <= v_max_takum;
+    elsif i_underflow = '1' or s_round_down_underflow = '1' then
+        o_takum <= v_min_takum; 
+    else
+        o_takum <= s_takum_rounded;
+    end if;
+end process;
 end architecture RTL;
