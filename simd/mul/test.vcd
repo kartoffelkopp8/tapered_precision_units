@@ -1,0 +1,982 @@
+$date
+  Tue May  5 18:39:59 2026
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module textio $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module math_real $end
+$upscope $end
+$scope module utility_pkg $end
+$upscope $end
+$scope module env $end
+$upscope $end
+$scope module numeric_std $end
+$upscope $end
+$scope module tb_posit_decode_simd $end
+$var reg 32 ! val[31:0] $end
+$var reg 4 " mask[3:0] $end
+$var reg 3 # exp[2:0] $end
+$var reg 4 $ o_rc[3:0] $end
+$var reg 32 % o_regime[31:0] $end
+$var reg 16 & o_exp[15:0] $end
+$var reg 28 ' o_mant[27:0] $end
+$var reg 2 ( simd[1:0] $end
+$scope module dut $end
+$var reg 32 ) i_val[31:0] $end
+$var reg 4 * i_simd_mask[3:0] $end
+$var reg 2 + i_simd_mode[1:0] $end
+$var reg 3 , i_dyn_exp[2:0] $end
+$var reg 4 - o_rc[3:0] $end
+$var reg 32 . o_regime[31:0] $end
+$var reg 16 / o_exp[15:0] $end
+$var reg 28 0 o_mant[27:0] $end
+$var reg 4 1 s_rc[3:0] $end
+$var reg 32 2 s_inverted[31:0] $end
+$var reg 4 3 s_eff_rc[3:0] $end
+$var reg 20 4 s_k[19:0] $end
+$var reg 32 5 s_k_extended[31:0] $end
+$var reg 4 6 s_vld[3:0] $end
+$var reg 4 7 s_carries[3:0] $end
+$var reg 32 8 s_op_a_regime[31:0] $end
+$var reg 32 9 s_without_regime[31:0] $end
+$var reg 32 : s_without_rc[31:0] $end
+$var reg 20 ; s_shift_count[19:0] $end
+$var reg 32 < s_aligned_exp_mantissa[31:0] $end
+$scope module gen_rc(0) $end
+$upscope $end
+$scope module gen_rc(1) $end
+$upscope $end
+$scope module gen_rc(2) $end
+$upscope $end
+$scope module gen_rc(3) $end
+$upscope $end
+$scope module gen_eff_rc(2) $end
+$upscope $end
+$scope module gen_eff_rc(1) $end
+$upscope $end
+$scope module gen_eff_rc(0) $end
+$upscope $end
+$scope module lod $end
+$var reg 32 = i_vec[31:0] $end
+$var reg 4 > i_simd_mask[3:0] $end
+$var reg 20 ? o_k[19:0] $end
+$var reg 4 @ o_vld[3:0] $end
+$scope module gen_recursion $end
+$var reg 8 A s_k_h[7:0] $end
+$var reg 8 B s_k_l[7:0] $end
+$var reg 2 C s_vld_h[1:0] $end
+$var reg 2 D s_vld_l[1:0] $end
+$scope module upper_lod $end
+$var reg 16 E i_vec[15:0] $end
+$var reg 2 F i_simd_mask[1:0] $end
+$var reg 8 G o_k[7:0] $end
+$var reg 2 H o_vld[1:0] $end
+$scope module gen_recursion $end
+$var reg 3 I s_k_h[2:0] $end
+$var reg 3 J s_k_l[2:0] $end
+$var reg 1 K s_vld_h[0:0] $end
+$var reg 1 L s_vld_l[0:0] $end
+$scope module upper_lod $end
+$var reg 8 M i_vec[7:0] $end
+$var reg 1 N i_simd_mask[0:0] $end
+$var reg 3 O o_k[2:0] $end
+$var reg 1 P o_vld[0:0] $end
+$scope module gen_base_case $end
+$var reg 1 Q s_vld_tmp $end
+$scope module lod_base $end
+$var reg 8 R i_x[7:0] $end
+$var reg 3 S o_k[2:0] $end
+$var reg 1 T o_vld $end
+$var reg 3 U s_k[2:0] $end
+$var reg 1 V s_vld $end
+$var reg 8 W s_x_tmp[7:0] $end
+$var reg 2 X s_k_l[1:0] $end
+$var reg 2 Y s_k_h[1:0] $end
+$var reg 1 Z s_vld_l $end
+$var reg 1 [ s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 4 \ i_x[3:0] $end
+$var reg 2 ] o_k[1:0] $end
+$var reg 1 ^ o_vld $end
+$var reg 2 _ s_k[1:0] $end
+$var reg 1 ` s_vld $end
+$var reg 4 a s_x_tmp[3:0] $end
+$var reg 1 b s_k_l[0:0] $end
+$var reg 1 c s_k_h[0:0] $end
+$var reg 1 d s_vld_l $end
+$var reg 1 e s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 2 f i_x[1:0] $end
+$var reg 1 g o_k[0:0] $end
+$var reg 1 h o_vld $end
+$var reg 1 i s_k[0:0] $end
+$var reg 1 j s_vld $end
+$var reg 2 k s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 l s_vld_l $end
+$var reg 1 m s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 2 n i_x[1:0] $end
+$var reg 1 o o_k[0:0] $end
+$var reg 1 p o_vld $end
+$var reg 1 q s_k[0:0] $end
+$var reg 1 r s_vld $end
+$var reg 2 s s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 t s_vld_l $end
+$var reg 1 u s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 4 v i_x[3:0] $end
+$var reg 2 w o_k[1:0] $end
+$var reg 1 x o_vld $end
+$var reg 2 y s_k[1:0] $end
+$var reg 1 z s_vld $end
+$var reg 4 { s_x_tmp[3:0] $end
+$var reg 1 | s_k_l[0:0] $end
+$var reg 1 } s_k_h[0:0] $end
+$var reg 1 !" s_vld_l $end
+$var reg 1 "" s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 2 #" i_x[1:0] $end
+$var reg 1 $" o_k[0:0] $end
+$var reg 1 %" o_vld $end
+$var reg 1 &" s_k[0:0] $end
+$var reg 1 '" s_vld $end
+$var reg 2 (" s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 )" s_vld_l $end
+$var reg 1 *" s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 2 +" i_x[1:0] $end
+$var reg 1 ," o_k[0:0] $end
+$var reg 1 -" o_vld $end
+$var reg 1 ." s_k[0:0] $end
+$var reg 1 /" s_vld $end
+$var reg 2 0" s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 1" s_vld_l $end
+$var reg 1 2" s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module lower_lod $end
+$var reg 8 3" i_vec[7:0] $end
+$var reg 1 4" i_simd_mask[0:0] $end
+$var reg 3 5" o_k[2:0] $end
+$var reg 1 6" o_vld[0:0] $end
+$scope module gen_base_case $end
+$var reg 1 7" s_vld_tmp $end
+$scope module lod_base $end
+$var reg 8 8" i_x[7:0] $end
+$var reg 3 9" o_k[2:0] $end
+$var reg 1 :" o_vld $end
+$var reg 3 ;" s_k[2:0] $end
+$var reg 1 <" s_vld $end
+$var reg 8 =" s_x_tmp[7:0] $end
+$var reg 2 >" s_k_l[1:0] $end
+$var reg 2 ?" s_k_h[1:0] $end
+$var reg 1 @" s_vld_l $end
+$var reg 1 A" s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 4 B" i_x[3:0] $end
+$var reg 2 C" o_k[1:0] $end
+$var reg 1 D" o_vld $end
+$var reg 2 E" s_k[1:0] $end
+$var reg 1 F" s_vld $end
+$var reg 4 G" s_x_tmp[3:0] $end
+$var reg 1 H" s_k_l[0:0] $end
+$var reg 1 I" s_k_h[0:0] $end
+$var reg 1 J" s_vld_l $end
+$var reg 1 K" s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 2 L" i_x[1:0] $end
+$var reg 1 M" o_k[0:0] $end
+$var reg 1 N" o_vld $end
+$var reg 1 O" s_k[0:0] $end
+$var reg 1 P" s_vld $end
+$var reg 2 Q" s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 R" s_vld_l $end
+$var reg 1 S" s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 2 T" i_x[1:0] $end
+$var reg 1 U" o_k[0:0] $end
+$var reg 1 V" o_vld $end
+$var reg 1 W" s_k[0:0] $end
+$var reg 1 X" s_vld $end
+$var reg 2 Y" s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 Z" s_vld_l $end
+$var reg 1 [" s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 4 \" i_x[3:0] $end
+$var reg 2 ]" o_k[1:0] $end
+$var reg 1 ^" o_vld $end
+$var reg 2 _" s_k[1:0] $end
+$var reg 1 `" s_vld $end
+$var reg 4 a" s_x_tmp[3:0] $end
+$var reg 1 b" s_k_l[0:0] $end
+$var reg 1 c" s_k_h[0:0] $end
+$var reg 1 d" s_vld_l $end
+$var reg 1 e" s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 2 f" i_x[1:0] $end
+$var reg 1 g" o_k[0:0] $end
+$var reg 1 h" o_vld $end
+$var reg 1 i" s_k[0:0] $end
+$var reg 1 j" s_vld $end
+$var reg 2 k" s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 l" s_vld_l $end
+$var reg 1 m" s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 2 n" i_x[1:0] $end
+$var reg 1 o" o_k[0:0] $end
+$var reg 1 p" o_vld $end
+$var reg 1 q" s_k[0:0] $end
+$var reg 1 r" s_vld $end
+$var reg 2 s" s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 t" s_vld_l $end
+$var reg 1 u" s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module lower_lod $end
+$var reg 16 v" i_vec[15:0] $end
+$var reg 2 w" i_simd_mask[1:0] $end
+$var reg 8 x" o_k[7:0] $end
+$var reg 2 y" o_vld[1:0] $end
+$scope module gen_recursion $end
+$var reg 3 z" s_k_h[2:0] $end
+$var reg 3 {" s_k_l[2:0] $end
+$var reg 1 |" s_vld_h[0:0] $end
+$var reg 1 }" s_vld_l[0:0] $end
+$scope module upper_lod $end
+$var reg 8 !# i_vec[7:0] $end
+$var reg 1 "# i_simd_mask[0:0] $end
+$var reg 3 ## o_k[2:0] $end
+$var reg 1 $# o_vld[0:0] $end
+$scope module gen_base_case $end
+$var reg 1 %# s_vld_tmp $end
+$scope module lod_base $end
+$var reg 8 &# i_x[7:0] $end
+$var reg 3 '# o_k[2:0] $end
+$var reg 1 (# o_vld $end
+$var reg 3 )# s_k[2:0] $end
+$var reg 1 *# s_vld $end
+$var reg 8 +# s_x_tmp[7:0] $end
+$var reg 2 ,# s_k_l[1:0] $end
+$var reg 2 -# s_k_h[1:0] $end
+$var reg 1 .# s_vld_l $end
+$var reg 1 /# s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 4 0# i_x[3:0] $end
+$var reg 2 1# o_k[1:0] $end
+$var reg 1 2# o_vld $end
+$var reg 2 3# s_k[1:0] $end
+$var reg 1 4# s_vld $end
+$var reg 4 5# s_x_tmp[3:0] $end
+$var reg 1 6# s_k_l[0:0] $end
+$var reg 1 7# s_k_h[0:0] $end
+$var reg 1 8# s_vld_l $end
+$var reg 1 9# s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 2 :# i_x[1:0] $end
+$var reg 1 ;# o_k[0:0] $end
+$var reg 1 <# o_vld $end
+$var reg 1 =# s_k[0:0] $end
+$var reg 1 ># s_vld $end
+$var reg 2 ?# s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 @# s_vld_l $end
+$var reg 1 A# s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 2 B# i_x[1:0] $end
+$var reg 1 C# o_k[0:0] $end
+$var reg 1 D# o_vld $end
+$var reg 1 E# s_k[0:0] $end
+$var reg 1 F# s_vld $end
+$var reg 2 G# s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 H# s_vld_l $end
+$var reg 1 I# s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 4 J# i_x[3:0] $end
+$var reg 2 K# o_k[1:0] $end
+$var reg 1 L# o_vld $end
+$var reg 2 M# s_k[1:0] $end
+$var reg 1 N# s_vld $end
+$var reg 4 O# s_x_tmp[3:0] $end
+$var reg 1 P# s_k_l[0:0] $end
+$var reg 1 Q# s_k_h[0:0] $end
+$var reg 1 R# s_vld_l $end
+$var reg 1 S# s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 2 T# i_x[1:0] $end
+$var reg 1 U# o_k[0:0] $end
+$var reg 1 V# o_vld $end
+$var reg 1 W# s_k[0:0] $end
+$var reg 1 X# s_vld $end
+$var reg 2 Y# s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 Z# s_vld_l $end
+$var reg 1 [# s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 2 \# i_x[1:0] $end
+$var reg 1 ]# o_k[0:0] $end
+$var reg 1 ^# o_vld $end
+$var reg 1 _# s_k[0:0] $end
+$var reg 1 `# s_vld $end
+$var reg 2 a# s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 b# s_vld_l $end
+$var reg 1 c# s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module lower_lod $end
+$var reg 8 d# i_vec[7:0] $end
+$var reg 1 e# i_simd_mask[0:0] $end
+$var reg 3 f# o_k[2:0] $end
+$var reg 1 g# o_vld[0:0] $end
+$scope module gen_base_case $end
+$var reg 1 h# s_vld_tmp $end
+$scope module lod_base $end
+$var reg 8 i# i_x[7:0] $end
+$var reg 3 j# o_k[2:0] $end
+$var reg 1 k# o_vld $end
+$var reg 3 l# s_k[2:0] $end
+$var reg 1 m# s_vld $end
+$var reg 8 n# s_x_tmp[7:0] $end
+$var reg 2 o# s_k_l[1:0] $end
+$var reg 2 p# s_k_h[1:0] $end
+$var reg 1 q# s_vld_l $end
+$var reg 1 r# s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 4 s# i_x[3:0] $end
+$var reg 2 t# o_k[1:0] $end
+$var reg 1 u# o_vld $end
+$var reg 2 v# s_k[1:0] $end
+$var reg 1 w# s_vld $end
+$var reg 4 x# s_x_tmp[3:0] $end
+$var reg 1 y# s_k_l[0:0] $end
+$var reg 1 z# s_k_h[0:0] $end
+$var reg 1 {# s_vld_l $end
+$var reg 1 |# s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 2 }# i_x[1:0] $end
+$var reg 1 !$ o_k[0:0] $end
+$var reg 1 "$ o_vld $end
+$var reg 1 #$ s_k[0:0] $end
+$var reg 1 $$ s_vld $end
+$var reg 2 %$ s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 &$ s_vld_l $end
+$var reg 1 '$ s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 2 ($ i_x[1:0] $end
+$var reg 1 )$ o_k[0:0] $end
+$var reg 1 *$ o_vld $end
+$var reg 1 +$ s_k[0:0] $end
+$var reg 1 ,$ s_vld $end
+$var reg 2 -$ s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 .$ s_vld_l $end
+$var reg 1 /$ s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 4 0$ i_x[3:0] $end
+$var reg 2 1$ o_k[1:0] $end
+$var reg 1 2$ o_vld $end
+$var reg 2 3$ s_k[1:0] $end
+$var reg 1 4$ s_vld $end
+$var reg 4 5$ s_x_tmp[3:0] $end
+$var reg 1 6$ s_k_l[0:0] $end
+$var reg 1 7$ s_k_h[0:0] $end
+$var reg 1 8$ s_vld_l $end
+$var reg 1 9$ s_vld_h $end
+$scope module recursive_gen_width_even $end
+$scope module inst_lod_low $end
+$var reg 2 :$ i_x[1:0] $end
+$var reg 1 ;$ o_k[0:0] $end
+$var reg 1 <$ o_vld $end
+$var reg 1 =$ s_k[0:0] $end
+$var reg 1 >$ s_vld $end
+$var reg 2 ?$ s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 @$ s_vld_l $end
+$var reg 1 A$ s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$scope module inst_lod_high $end
+$var reg 2 B$ i_x[1:0] $end
+$var reg 1 C$ o_k[0:0] $end
+$var reg 1 D$ o_vld $end
+$var reg 1 E$ s_k[0:0] $end
+$var reg 1 F$ s_vld $end
+$var reg 2 G$ s_x_tmp[1:0] $end
+$comment s_k_l is not handled $end
+$comment s_k_h is not handled $end
+$var reg 1 H$ s_vld_l $end
+$var reg 1 I$ s_vld_h $end
+$scope module recursive_gen_width_2 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module calc_reg $end
+$var reg 32 J$ i_op_0[31:0] $end
+$var reg 32 K$ i_op_1[31:0] $end
+$var reg 2 L$ i_mode[1:0] $end
+$var reg 4 M$ i_sub_mask[3:0] $end
+$var reg 32 N$ o_sum[31:0] $end
+$var reg 4 O$ o_carries[3:0] $end
+$var reg 5 P$ s_lane_carries[4:0] $end
+$var reg 4 Q$ s_is_lane_start[3:0] $end
+$scope module gen_lanes(0) $end
+$var reg 8 R$ s_op_0[7:0] $end
+$var reg 8 S$ s_op_1[7:0] $end
+$var reg 9 T$ s_res[8:0] $end
+$var reg 1 U$ s_cin $end
+$var reg 1 V$ s_sub_ctrl $end
+$upscope $end
+$scope module gen_lanes(1) $end
+$var reg 8 W$ s_op_0[7:0] $end
+$var reg 8 X$ s_op_1[7:0] $end
+$var reg 9 Y$ s_res[8:0] $end
+$var reg 1 Z$ s_cin $end
+$var reg 1 [$ s_sub_ctrl $end
+$upscope $end
+$scope module gen_lanes(2) $end
+$var reg 8 \$ s_op_0[7:0] $end
+$var reg 8 ]$ s_op_1[7:0] $end
+$var reg 9 ^$ s_res[8:0] $end
+$var reg 1 _$ s_cin $end
+$var reg 1 `$ s_sub_ctrl $end
+$upscope $end
+$scope module gen_lanes(3) $end
+$var reg 8 a$ s_op_0[7:0] $end
+$var reg 8 b$ s_op_1[7:0] $end
+$var reg 9 c$ s_res[8:0] $end
+$var reg 1 d$ s_cin $end
+$var reg 1 e$ s_sub_ctrl $end
+$upscope $end
+$upscope $end
+$scope module shift_left $end
+$var reg 32 f$ i_data[31:0] $end
+$var reg 20 g$ i_shift_amts[19:0] $end
+$var reg 2 h$ i_mode[1:0] $end
+$var reg 32 i$ o_result[31:0] $end
+$comment s_shift_amts is not handled $end
+$comment s_stage is not handled $end
+$scope module gen_unpack(0) $end
+$upscope $end
+$scope module gen_unpack(1) $end
+$upscope $end
+$scope module gen_unpack(2) $end
+$upscope $end
+$scope module gen_unpack(3) $end
+$upscope $end
+$scope module gen_stages(0) $end
+$upscope $end
+$scope module gen_stages(1) $end
+$upscope $end
+$scope module gen_stages(2) $end
+$upscope $end
+$scope module gen_stages(3) $end
+$upscope $end
+$scope module gen_stages(4) $end
+$upscope $end
+$upscope $end
+$scope module shift_exp $end
+$var reg 32 j$ i_data[31:0] $end
+$var reg 20 k$ i_shift_amts[19:0] $end
+$var reg 2 l$ i_mode[1:0] $end
+$var reg 32 m$ o_result[31:0] $end
+$comment s_shift_amts is not handled $end
+$comment s_stage is not handled $end
+$scope module gen_unpack(0) $end
+$upscope $end
+$scope module gen_unpack(1) $end
+$upscope $end
+$scope module gen_unpack(2) $end
+$upscope $end
+$scope module gen_unpack(3) $end
+$upscope $end
+$scope module gen_stages(0) $end
+$upscope $end
+$scope module gen_stages(1) $end
+$upscope $end
+$scope module gen_stages(2) $end
+$upscope $end
+$scope module gen_stages(3) $end
+$upscope $end
+$scope module gen_stages(4) $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+b00011010110011000000000000000000 !
+b1111 "
+b100 #
+b0100 $
+b00000001111111111000000100000001 %
+b0101001110001000 &
+b0000000000000000000000000000 '
+b10 (
+b00011010110011000000000000000000 )
+b1111 *
+b10 +
+b100 ,
+b0100 -
+b00000001111111111000000100000001 .
+b0101001110001000 /
+b0000000000000000000000000000 0
+b0100 1
+b00011010101100110000000000000000 2
+b0100 3
+b00011000000000000000 4
+b00000000000000011000000000000000 5
+b1100 6
+b0010 7
+b00000001111111100000000100000001 8
+b11010000101100110000000000000000 9
+b01010000001100111000000010000000 :
+b00000000000000000000 ;
+b01010000001100111000000010000000 <
+b00011010101100110000000000000000 =
+b1111 >
+b00011000000000000000 ?
+b1100 @
+b00110000 A
+b00000000 B
+b11 C
+b00 D
+b0001101010110011 E
+b11 F
+b00110000 G
+b11 H
+b011 I
+b000 J
+b1 K
+b1 L
+b00011010 M
+b1 N
+b011 O
+b1 P
+1Q
+b00011010 R
+b011 S
+1T
+b011 U
+1V
+bUUUUUUUU W
+b00 X
+b11 Y
+1Z
+1[
+b1010 \
+b00 ]
+1^
+b00 _
+1`
+bUUUU a
+b0 b
+b0 c
+1d
+1e
+b10 f
+b0 g
+1h
+b0 i
+1j
+bUU k
+Ul
+Um
+b10 n
+b0 o
+1p
+b0 q
+1r
+bUU s
+Ut
+Uu
+b0001 v
+b11 w
+1x
+b11 y
+1z
+bUUUU {
+b1 |
+b0 }
+1!"
+0""
+b01 #"
+b1 $"
+1%"
+b1 &"
+1'"
+bUU ("
+U)"
+U*"
+b00 +"
+b0 ,"
+0-"
+b0 ."
+0/"
+bUU 0"
+U1"
+U2"
+b10110011 3"
+b1 4"
+b000 5"
+b1 6"
+17"
+b10110011 8"
+b000 9"
+1:"
+b000 ;"
+1<"
+bUUUUUUUU ="
+b10 >"
+b00 ?"
+1@"
+1A"
+b0011 B"
+b10 C"
+1D"
+b10 E"
+1F"
+bUUUU G"
+b0 H"
+b0 I"
+1J"
+0K"
+b11 L"
+b0 M"
+1N"
+b0 O"
+1P"
+bUU Q"
+UR"
+US"
+b00 T"
+b0 U"
+0V"
+b0 W"
+0X"
+bUU Y"
+UZ"
+U["
+b1011 \"
+b00 ]"
+1^"
+b00 _"
+1`"
+bUUUU a"
+b0 b"
+b0 c"
+1d"
+1e"
+b11 f"
+b0 g"
+1h"
+b0 i"
+1j"
+bUU k"
+Ul"
+Um"
+b10 n"
+b0 o"
+1p"
+b0 q"
+1r"
+bUU s"
+Ut"
+Uu"
+b0000000000000000 v"
+b11 w"
+b00000000 x"
+b00 y"
+b000 z"
+b000 {"
+b0 |"
+b0 }"
+b00000000 !#
+b1 "#
+b000 ##
+b0 $#
+0%#
+b00000000 &#
+b000 '#
+0(#
+b000 )#
+0*#
+bUUUUUUUU +#
+b00 ,#
+b00 -#
+0.#
+0/#
+b0000 0#
+b00 1#
+02#
+b00 3#
+04#
+bUUUU 5#
+b0 6#
+b0 7#
+08#
+09#
+b00 :#
+b0 ;#
+0<#
+b0 =#
+0>#
+bUU ?#
+U@#
+UA#
+b00 B#
+b0 C#
+0D#
+b0 E#
+0F#
+bUU G#
+UH#
+UI#
+b0000 J#
+b00 K#
+0L#
+b00 M#
+0N#
+bUUUU O#
+b0 P#
+b0 Q#
+0R#
+0S#
+b00 T#
+b0 U#
+0V#
+b0 W#
+0X#
+bUU Y#
+UZ#
+U[#
+b00 \#
+b0 ]#
+0^#
+b0 _#
+0`#
+bUU a#
+Ub#
+Uc#
+b00000000 d#
+b1 e#
+b000 f#
+b0 g#
+0h#
+b00000000 i#
+b000 j#
+0k#
+b000 l#
+0m#
+bUUUUUUUU n#
+b00 o#
+b00 p#
+0q#
+0r#
+b0000 s#
+b00 t#
+0u#
+b00 v#
+0w#
+bUUUU x#
+b0 y#
+b0 z#
+0{#
+0|#
+b00 }#
+b0 !$
+0"$
+b0 #$
+0$$
+bUU %$
+U&$
+U'$
+b00 ($
+b0 )$
+0*$
+b0 +$
+0,$
+bUU -$
+U.$
+U/$
+b0000 0$
+b00 1$
+02$
+b00 3$
+04$
+bUUUU 5$
+b0 6$
+b0 7$
+08$
+09$
+b00 :$
+b0 ;$
+0<$
+b0 =$
+0>$
+bUU ?$
+U@$
+UA$
+b00 B$
+b0 C$
+0D$
+b0 E$
+0F$
+bUU G$
+UH$
+UI$
+b00000001111111100000000100000001 J$
+b00000000000000011000000000000000 K$
+b10 L$
+b1011 M$
+b00000001111111111000000100000001 N$
+b0010 O$
+b10011 P$
+b1111 Q$
+b00000001 R$
+b11111111 S$
+b100000001 T$
+1U$
+1V$
+b00000001 W$
+b01111111 X$
+b010000001 Y$
+1Z$
+1[$
+b11111110 \$
+b00000001 ]$
+b011111111 ^$
+0_$
+0`$
+b00000001 a$
+b11111111 b$
+b100000001 c$
+1d$
+1e$
+b00011010101100110000000000000000 f$
+b00011000000000000000 g$
+b10 h$
+b11010000101100110000000000000000 i$
+b01010000001100111000000010000000 j$
+b00000000000000000000 k$
+b10 l$
+b01010000001100111000000010000000 m$
+#10000000
