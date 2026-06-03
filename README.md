@@ -7,5 +7,5 @@ The toolflow leverages an open-source EDA infrastructure driven by **Yosys** for
 ---
 
 ## Examples 
-- <32,2> posit adder gds:
+- <32,2> posit adder gds with utilisation of 70%:
 - <img width="1280" height="1200" alt="image" src="https://github.com/user-attachments/assets/329777ed-0b11-48cd-9d2f-4a43c56978db" />
