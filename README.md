@@ -29,7 +29,7 @@ url = {https://doi.org/10.14529/jsfi170206},
 doi = {10.14529/jsfi170206}
 ```
 ### Takums
-- ```bibtex
+```bibtex
 @inbook{Hunhold_2024,
    title={Beating Posits at Their Own Game: Takum Arithmetic},
    ISBN={9783031727092},
@@ -42,7 +42,7 @@ doi = {10.14529/jsfi170206}
    year={2024},
    pages={1–51} }
 ```
-- ```bibtex
+```bibtex
 @misc{hunhold2025designimplementationtakumarithmetic,
       title={Design and Implementation of a Takum Arithmetic Hardware Codec}, 
       author={Laslo Hunhold},
