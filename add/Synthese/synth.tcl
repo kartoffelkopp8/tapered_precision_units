@@ -1,6 +1,6 @@
 # 8 bt posit_add -> "area":7573.078800,"sequential_area":  3086.294400, 32 bit "area": 36814.629600,"sequential_area": 9454.838400,
 source "utils.tcl"
-yosys ghdl --std=08 posit_add
+yosys ghdl -gG_N=32 --std=08 posit_add
 yosys prep -top posit_add;;
 yosys clean
 
