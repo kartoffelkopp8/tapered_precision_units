@@ -2,7 +2,7 @@
 source "utils.tcl"
 set toplevel takum_mul
 
-yosys ghdl --std=08 $toplevel
+yosys ghdl -gG_N=32 --std=08 $toplevel
 yosys prep -top $toplevel;;
 yosys clean
 
