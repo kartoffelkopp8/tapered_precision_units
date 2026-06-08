@@ -40,7 +40,7 @@ begin
     --         is_nar                   => s_is_nar
     --     );
     
-    dut : entity work.takum_logarithmic_decoder
+    dut : entity work.takum_predecoder
         generic map(
             G_N => G_N
         )
