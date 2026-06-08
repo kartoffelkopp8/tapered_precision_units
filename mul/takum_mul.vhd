@@ -70,8 +70,7 @@ begin
         )
         port map(
             i_takum => i_op_a,
-            o_c     => s_c_1,
-            o_mant  => s_mant_1
+            o_l     => s_l_1
         );
 
     decoder_b : entity work.takum_logarithmic_decoder
@@ -80,15 +79,10 @@ begin
         )
         port map(
             i_takum => i_op_b,
-            o_c     => s_c_2,
-            o_mant  => s_mant_2
+            o_l     => s_l_2
         );
-
-    s_l_1 <= std_logic_vector(signed(s_c_1 & s_mant_1)) when i_op_a(G_N - 1) = '0' else
-             std_logic_vector(-signed(s_c_1 & s_mant_1));
-
-    s_l_2 <= std_logic_vector(signed(s_c_2 & s_mant_2)) when i_op_b(G_N - 1) = '0' else
-             std_logic_vector(-signed(s_c_2 & s_mant_2));
+    
+    
 
     s_l_added_ext <= std_logic_vector(resize(signed(s_l_1), G_N + 5) + resize(signed(s_l_2), G_N + 5));
     s_l_added     <= s_l_added_ext(G_N + 3 downto 0);
