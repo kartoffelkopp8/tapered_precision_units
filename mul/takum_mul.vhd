@@ -24,11 +24,6 @@ architecture Behavioral of takum_mul is
     signal s_is_nar      : std_logic;
     signal s_result_sign : std_logic;
 
-    signal s_c_1    : std_logic_vector(8 downto 0);
-    signal s_c_2    : std_logic_vector(8 downto 0);
-    signal s_mant_1 : std_logic_vector(G_N - 5 - 1 downto 0);
-    signal s_mant_2 : std_logic_vector(G_N - 5 - 1 downto 0);
-
     signal s_l_1 : std_logic_vector(G_N + 3 downto 0);
     signal s_l_2 : std_logic_vector(G_N + 3 downto 0);
 
