@@ -6,6 +6,7 @@ SOURCE := \
  ../utility_pkg.vhd \
  ../takum_shift_right.vhd \
  ../takum_shift_left.vhd \
+ ../takum_predecoder.vhd \
  ../takum_logarithmic_decoder.vhd \
  ../LOD.vhd \
  ../takum_logarithmic_encoder.vhd \
