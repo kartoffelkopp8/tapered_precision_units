@@ -1,0 +1,20 @@
+[options]
+mode prove
+depth 1 
+
+[engines]
+smtbmc z3
+
+[script]
+# Schritt 1: Analysieren der Dateien (Dateinamen angeben)
+ghdl --std=08 utility_pkg.vhd takum_shift_right.vhd takum_shift_left.vhd takum_predecoder.vhd takum_linear_decoder.vhd formal_wrapper_linear_decoder.vhd -e formal_wrapper_linear_decoder
+prep -top formal_wrapper_linear_decoder
+
+[files]
+../utility_pkg.vhd
+../takum_shift_right.vhd
+../takum_shift_left.vhd
+../takum_predecoder.vhd
+../takum_linear_decoder.vhd
+# Stellen Sie sicher, dass diese Datei im sim/-Ordner exakt so heißt:
+formal_wrapper_linear_decoder.vhd
