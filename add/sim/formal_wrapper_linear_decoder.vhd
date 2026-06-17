@@ -32,6 +32,7 @@ begin
             o_exponent => uut_exp,
             o_fraction => uut_fract
         );
+
     is_special_case <= '1' when uut_takum(G_N - 2 downto 0) = std_logic_vector'(G_N - 2 downto 0 => '0') else '0';
     -- golden reference 
     reference : process(uut_takum) is

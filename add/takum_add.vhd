@@ -12,7 +12,7 @@ entity takum_add is
     );
     port(
         i_clk    : in  std_logic;
-        i_en    : in  std_logic;
+        i_en     : in  std_logic;
         i_op_a   : in  std_logic_vector(G_N - 1 downto 0);
         i_op_b   : in  std_logic_vector(G_N - 1 downto 0);
         o_result : out std_logic_vector(G_N - 1 downto 0)
@@ -38,12 +38,15 @@ architecture RTL of takum_add is
 
     signal s_shift_out_of_bounds : std_logic;
     signal s_normalisation_count : std_logic_vector(8 downto 0);
-    signal s_normalisation_ammt  : std_logic_vector(7 downto 0);
+    signal s_normalisation_ammt  : std_logic_vector(clog2(C_FRACT_WIDTH) -1 downto 0);
 
     signal s_normlizer_result : std_logic_vector(C_FRACT_WIDTH downto 0);
     signal s_sticky_bit       : std_logic;
     signal s_normalized_fract : std_logic_vector(C_FRACT_WIDTH - 1 downto 0);
     signal s_result_fract     : std_logic_vector(C_FRACT_WIDTH - 1 downto 0);
+
+    signal s_result      : std_logic_vector(G_N - 1 downto 0);
+    signal s_result_sign : std_logic;
 begin
 
     -- Check für NaR (Not a Real) oder Zero zur Optimierung
@@ -90,6 +93,7 @@ begin
 
     -- normalize
     s_op0_greater_op1 <= '1' when signed(s_exp_a) > signed(s_exp_b) else '0';
+    s_result_sign     <= i_op_a(G_N - 1) when s_op0_greater_op1 = '1' else i_op_b(G_N - 1);
 
     s_larger_exp    <= s_exp_a when s_op0_greater_op1 = '1' else s_exp_b;
     s_smaller_exp   <= s_exp_b when s_op0_greater_op1 = '1' else s_exp_a;
@@ -100,7 +104,7 @@ begin
     -- TODO: check cases for comparison/subtraction of signedinteger, -> less mux???
     s_shift_out_of_bounds <= '1' when unsigned(s_normalisation_count) >= to_unsigned(C_FRACT_WIDTH, s_normalisation_count'length) else '0';
 
-    s_normalisation_ammt <= s_normalisation_count(7 downto 0) when s_shift_out_of_bounds = '0' else std_logic_vector(to_unsigned(C_FRACT_WIDTH, s_normalisation_ammt'length));
+    s_normalisation_ammt <= s_normalisation_count(2 downto 0) when s_shift_out_of_bounds = '0' else std_logic_vector(to_unsigned(clog2(C_FRACT_WIDTH), s_normalisation_ammt'length));
 
     norm_shift : entity work.takum_shift_right_sticky
         generic map(
@@ -117,19 +121,18 @@ begin
     s_sticky_bit       <= s_normlizer_result(0);
 
     s_result_fract <= std_logic_vector(signed(s_larger_fract) + signed(s_normalized_fract));
+    takum_linear_encoder_inst : entity work.takum_linear_encoder
+        generic map(
+            G_N => G_N
+        )
+        port map(
+            i_sign_bit  => s_result_sign,
+            i_overflow  => '0',
+            i_underflow => '0',
+            i_fraction  => s_result_fract(G_N-6 downto 0),
+            i_exp       => s_larger_exp,
+            o_takum     => s_result
+        );
 
-    -- takum_linear_encoder_inst : entity work.takum_linear_encoder
-    --     generic map(
-    --         G_N => G_N
-    --     )
-    --     port map(
-    --         i_sign_bit  => i_sign_bit,
-    --         i_overflow  => i_overflow,
-    --         i_underflow => i_underflow,
-    --         i_fraction  => i_fraction,
-    --         i_exp       => i_exp,
-    --         o_takum     => o_takum
-    --     );
-    
-
+    o_result <= s_is_nar & (G_N - 2 downto 0 => '0') when s_is_nar or s_is_zero else s_result;
 end architecture RTL;
