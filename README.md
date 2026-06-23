@@ -2,9 +2,9 @@
 
 This repository contains parameterizable VHDL RTL implementations for various **Tapered Precision Floating-Point Number Formats** (such as Posits and Takum variants). Additionally, it provides hardware synthesis and physical design scripts for turning the RTL into ASIC macros using the open-source **IHP SG13G2 130 nm BiCMOS technology node**.
 
-The toolflow leverages an open-source EDA infrastructure driven by **Yosys** for logic synthesis and **OpenROAD** for automated floorplanning, placement, routing, and timing closure.
+The toolflow uses an open-source EDA infrastructure like by **Yosys** for logic synthesis and **OpenROAD** for automated floorplanning, placement, routing, and timing closure.
 
-**still under Development**
+**still under Development (mainly takum adder)**
 
 ---
 
