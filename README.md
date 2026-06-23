@@ -1,4 +1,4 @@
-# Tapered Precision Floating-Point Hardware for ASIC Macros
+# Tapered Precision Floating-Point Hardware for ASIC Macros (see: branches)
 
 This repository contains parameterizable VHDL RTL implementations (**in their respective branches**) for various **Tapered Precision Floating-Point Number Formats** (such as Posits and Takum variants). Additionally, it provides hardware synthesis and physical design scripts for turning the RTL into ASIC macros using the open-source **IHP SG13G2 130 nm BiCMOS technology node**.
 
